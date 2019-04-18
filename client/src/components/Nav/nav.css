@@ -1,0 +1,9 @@
+nav,#search,#redirectLinks{
+    display: flex;
+    justify-content: space-between ;
+}
+
+.route{
+    color:white;
+}
+

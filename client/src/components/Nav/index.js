@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./nav.css"
 class Nav extends React.Component {
   state={
     term:""
@@ -18,19 +19,23 @@ class Nav extends React.Component {
   };
   render(){
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-dark bg-primary">
     <div id="redirectLinks">
-    <h6 className="navbar-brand">
+   
        <Link to="/" className={window.location.pathname==="/"?"nav-link active" : "nav-link" }>
+       <h6 className="navbar-brand route">
        Google books saver
+       </h6>
        </Link>
-        </h6>
+     
       
-      <h6 className="navbar-brand">
-      <Link to="/saved" className={window.location.pathname==="/"?"nav-link active" : "nav-link"} >
+      
+      <Link to="/saved" className={window.location.pathname==="/"?"nav-link active" : "nav-link"}  >
+      <h6 className="navbar-brand route">
       Saved
-      </Link>
       </h6>
+      </Link>
+     
     </div>
     <div id="search">
       <form>  
@@ -39,7 +44,7 @@ class Nav extends React.Component {
         value={this.state.term} 
         onChange={this.handleInputChange}
         name="term"
-        className="form-cpntrol" 
+        className="form-control" 
         placeholder="Book Name"></input>
       </form>
       <Link to={`/search/${this.state.term}`}>

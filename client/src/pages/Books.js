@@ -9,12 +9,22 @@ class Books extends Component {
     books: []
   };
   componentDidMount(){
-   API.getBooks().then(res=>{
+    this.grabBooks()
+  }  
+ grabBooks(){
+  API.getBooks().then(res=>{
     console.log("mounting")
     this.setState({books:res.data})
    }
     )
-  }  
+ }
+  delete=id=>{
+    console.log(id)
+      API.deleteBook(id)
+      .then(res=>{this.grabBooks()})
+      .catch(err=> console.log(err))
+      }
+  
 
   // Add code here to get all books from the database and save them to this.state.books
 
@@ -33,10 +43,12 @@ class Books extends Component {
                  title={book.title}
                  authors={book.authors}
                  synopsis={book.synopsis}
-                 img={book.img}
-                 product_id={book.product_id}
+                 img={book.image}
+                 key={book.product_id}
                  link={book.link}
-
+                 task={this.delete}
+                 index={book._id}
+                 disabled={false}
                  />
               ))
           ):(

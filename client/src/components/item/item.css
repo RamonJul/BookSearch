@@ -1,0 +1,15 @@
+.Item,.author,.Header {
+    display: flex;
+    flex-direction: row;
+}
+
+.Item{
+   padding:20px 0;
+}
+.Header{
+    justify-content: space-between;
+}
+
+.name{
+    margin: 0 10px;
+}

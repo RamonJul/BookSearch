@@ -12,11 +12,8 @@ class Nav extends React.Component {
     });
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    if (this.state.title && this.state.author) {
-    }
-  };
+
+
   render(){
   return (
     <nav className="navbar navbar-dark bg-primary">
@@ -38,7 +35,6 @@ class Nav extends React.Component {
      
     </div>
     <div id="search">
-      <form>  
         <input 
         type="text" 
         value={this.state.term} 
@@ -46,11 +42,11 @@ class Nav extends React.Component {
         name="term"
         className="form-control" 
         placeholder="Book Name"></input>
-      </form>
-      <Link to={`/search/${this.state.term}`}>
+    
+      <Link to={`/search/${this.state.term}`} onClick={window.location.pathname===`/search/${this.state.term}`?window.location.reload():null}>
       <button 
       type="submit" 
-      onChange={this.state.handleFormSubmit}
+      onClick={()=>this.props.submit(this.state.term)}
       className="btn btn-primary">
       Search
       </button>

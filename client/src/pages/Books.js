@@ -48,7 +48,8 @@ class Books extends Component {
                  link={book.link}
                  task={this.delete}
                  index={book._id}
-                 disabled={false}
+                 message1={`DELETE`}
+                 message2={`DELETE`}
                  />
               ))
           ):(

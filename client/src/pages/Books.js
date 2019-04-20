@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Item from "../components/item/index"
 import API from "./../utils/API"
-
+const h3Style={
+  textAlign:`center`
+}
 class Books extends Component {
   // Initialize this.state.books as an empty array
   state = {
@@ -53,7 +55,7 @@ class Books extends Component {
                  />
               ))
           ):(
-            <h3>nothing saved</h3>
+            <h3 style={h3Style}>nothing saved</h3>
           )}
 
           </Col>

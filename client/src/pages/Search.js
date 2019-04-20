@@ -2,39 +2,37 @@ import React from "react";
 import { Col, Row, Container } from "../components/Grid";
 import Item from "../components/item/index"
 import API from "./../utils/API"
+const h3Style={
+  textAlign:`center`
+}
 class SearchPage extends React.Component{
 state={
   term:"",
   books:[],
 }
 
-  // componentDidMount=()=>
-  // {if(!this.props.searchTerm){
-  //   {console.log(this.props)
-  //   this.rerRender(this.props.computedMatch.params.term)}  
-  // }
-  // else{
-  //   this.rerRender(this.props.searchTerm)
-  // }
-  // }
+  componentDidMount=()=>{
+    this.rerRender(this.props.searchTerm)
+  }
 
   
 
   componentDidUpdate=()=>
-  {if(this.props.searchTterm!==this.state.term)
-    this.rerRender(this.props.term)
+  {if(this.props.searchTerm!==this.state.term)
+    this.rerRender(this.props.searchTerm)
   }
 
 
    rerRender=(term)=>{
      let booksGoogle=[]
-     let searchTerm=term
+     let searchTerm=term||JSON.parse(localStorage.getItem('term'))
     API.searchBooks(searchTerm).then(res=>{
-      searchTerm=searchTerm
       booksGoogle=res.data.items
       this.setState({
         term:searchTerm,
         books:booksGoogle,
+      },()=>{
+        localStorage.setItem('term', JSON.stringify(this.state.term))
       })
     })
    }
@@ -78,7 +76,7 @@ state={
    }
 
     render(){
-
+    
         return(
             <Container fluid>
             <Row>
@@ -88,7 +86,7 @@ state={
                   this.state.books.map( (book,index)=>                  
                     this.checkIfBookIsValid(book,index)
                   
-              )):(<h3>no search</h3>)
+              )):(<h3 style={h3Style}>no results</h3>)
                   }
     
               </Col>

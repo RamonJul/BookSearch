@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Button from "./../button/index"
 import "./nav.css"
 class Nav extends React.Component {
   state={
@@ -11,7 +12,19 @@ class Nav extends React.Component {
       [name]: value
     });
   };
-
+  changeRoute=()=>{
+   const link=this.state.term.length?(`/search/${this.state.term}`):(window.location.pathname)
+    return( <Link to={link} >
+      <Button 
+      type="submit" 
+      className={"btn btn-primary"}
+      onClick={this.props.submit}
+      term={this.state.term}
+      text={`Search`}
+      />
+      </Link>)
+   
+  }
 
 
   render(){
@@ -23,7 +36,7 @@ class Nav extends React.Component {
        <h6 className="navbar-brand route">
        Google books saver
        </h6>
-       </Link>
+       </Link> 
      
       
       
@@ -42,21 +55,8 @@ class Nav extends React.Component {
         name="term"
         className="form-control" 
         placeholder="Book Name"></input>
-    
-      <Link to={`/search/${this.state.term}`} onClick={window.location.pathname===`/search/${this.state.term}`?window.location.reload():null}>
-      <button 
-      type="submit" 
-      onClick={()=>this.props.submit(this.state.term)}
-      className="btn btn-primary">
-      Search
-      </button>
-      </Link>
-
+    {this.changeRoute()}  
     </div>
- 
-
-
-
     </nav>
   );
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route,Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route,Switch} from "react-router-dom";
 import Books from "./pages/Books";
 import Nav from "./components/Nav";
 import SearchPage from "./pages/Search";
@@ -9,14 +9,15 @@ class App extends React.Component {
    term:""
   }
   handleFormSubmit = (term) => {
-    if(term!==""){
+    console.log(term.length)
+    if(term.length){
+      console.log(`not zero`)
     this.setState({term:term})
     }
   };
 
 
   render(){
-    console.log(window.location)
   return (
     <Router>
     <div>

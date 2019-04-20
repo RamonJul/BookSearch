@@ -9,7 +9,6 @@ class App extends React.Component {
    term:""
   }
   handleFormSubmit = (term) => {
-    console.log(term.length)
     if(term.length){
       console.log(`not zero`)
     this.setState({term:term})
